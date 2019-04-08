@@ -10,7 +10,7 @@ public class StringLinkedList {
     /**
      * Constructs an empty list.
      */
-    public StringLinkedList() {
+    public StringLinkedList() {    	
     }
     
     
@@ -37,29 +37,43 @@ public class StringLinkedList {
 	}
 
 	public boolean add(String e) {
-        add(size(), e);
+		if(size == 0) {
+			addFirst(e);
+			first.next = last;			
+		}else {			
+			add(size(),e);
+		}
         return true;
     }
 	
 	public void add(int index, String e) {
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException(index+" est en dehors de la taille de la liste");
-        if (index == size)
+        if (index == size) {
             addLast(e);
+        }
         else {
-        	Node f = first; 
-            addBefore(e, index, 0, f);        	
+        	Node x = node(index);
+        	Node newNode = new Node(e, x.prev, x);
+        	x.prev.next = newNode;
+        	x.prev = newNode;
         }
 	}
 	
 	public void addFirst(String e) {
 		Node newNode = new Node(e, null, first);
 		first = newNode;
+		size++;
 	}
 
 	public void addLast(String e) {
 		Node newNode = new Node(e, last, null);
 		last = newNode;
+		if(size == 1) {
+			last.prev = first;
+			first.next = last;
+		}
+		size++;
 	}
 	
 	public void addBefore(String e, int indexElement, int index, Node f) {
@@ -218,9 +232,9 @@ public class StringLinkedList {
     
     public String toString() {
     	String res = "";
-        for (Node x = first; x != null; x = x.next) {
-        	res = x.value+" 	";
-        }
+        for (Node x = first; x != null; x = x.next) {        	
+        	res += x.value+" 	";
+        }        
         return res;
     }
 
