@@ -1,0 +1,15 @@
+1.La grandeur de la complexité de recherche d’un élément : O(n) 
+La grandeur de la complexité d'insertion d'un élement au début : O(1)
+La grandeur de la complexité d'insertion d'un élement à la fin : O(1)
+La grandeur de la complexité d'insertion d'un élement au milieu : O(n)
+
+Il est important de stocker la tête et la queue pour y insérer des éléments en tête ou en fin de la liste
+
+Sinon l'insertion au début et à la fin aurait comme complexité O(n) et
+ getLast aurait aussi comme complexité: O(n) pour itérer à travers toute la liste.
+
+
+Groupe : 
+YAHIAOUI Anis
+Andrea Perrichon Chretien
+MOHAND AMEZIANE AIT BEKKA
