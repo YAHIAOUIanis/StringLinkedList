@@ -37,44 +37,53 @@ public class StringLinkedList {
 	}
 
 	public boolean add(String e) {
-		if(size == 0) {
-			addFirst(e);
-			first.next = last;			
-		}else {			
-			add(size(),e);
-		}
+		addLast(e);
         return true;
     }
 	
 	public void add(int index, String e) {
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException(index+" est en dehors de la taille de la liste");
-        if (index == size) {
+        if (index == size)
             addLast(e);
-        }
-        else {
-        	Node x = node(index);
-        	Node newNode = new Node(e, x.prev, x);
-        	x.prev.next = newNode;
-        	x.prev = newNode;
-        }
+        else
+            addBefore(e, node(index));
 	}
 	
 	public void addFirst(String e) {
-		Node newNode = new Node(e, null, first);
-		first = newNode;
-		size++;
+        final Node f = first;
+        final Node newNode = new Node(e, null, f);
+        first = newNode;
+        if (f == null)
+            last = newNode;
+        else
+            f.prev = newNode;
+        size++;
 	}
 
 	public void addLast(String e) {
-		Node newNode = new Node(e, last, null);
-		last = newNode;
-		if(size == 1) {
-			last.prev = first;
-			first.next = last;
-		}
-		size++;
+        final Node l = last;
+        final Node newNode = new Node(e, l, null);
+        last = newNode;
+        if (l == null)
+            first = newNode;
+        else
+            l.next = newNode;
+        size++;
 	}
+	
+    public void addBefore(String e, Node succ) {
+        // assert succ != null;
+        final Node pred = succ.prev;
+        final Node newNode = new Node(e,pred, succ);
+        succ.prev = newNode;
+        if (pred == null)
+            first = newNode;
+        else
+            pred.next = newNode;
+        size++;
+    }
+
 	
 	public void addBefore(String e, int indexElement, int index, Node f) {
 		if(index==indexElement) {

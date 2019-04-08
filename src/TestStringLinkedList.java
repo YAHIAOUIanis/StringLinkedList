@@ -8,12 +8,12 @@ public class TestStringLinkedList {
 	}
 	
 	public static void add(StringLinkedList sll) {							
-		sll.addFirst("e");
-		sll.add(null);
-		sll.add(null);
+		sll.add(0, "a");
+		sll.add(3, "a");
 		System.out.println(sll.size());
 		System.out.println(sll.toString());
 	}
 
 }
+
 
